@@ -1,0 +1,104 @@
+os ~/Downloads/Design for Availability, Resilience and Reliability $ ssh -i "ec2.pem" ec2-user@ec2-54-208-127-152.compute-1.amazonaws.com
+The authenticity of host 'ec2-54-208-127-152.compute-1.amazonaws.com (54.208.127.152)' can't be established.
+ED25519 key fingerprint is SHA256:uzdOZSjhmuASS9dRoLTE7MGI8en6jbTnCOmnrnHj+TA.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-54-208-127-152.compute-1.amazonaws.com' (ED25519) to the list of known hosts.
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux 2 AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-2/
+2 package(s) needed for security, out of 10 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-10-1-10-234 ~]$ yum install mysql
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+You need to be root to perform this command.
+[ec2-user@ip-10-1-10-234 ~]$ sudo yum install mysql
+Loaded plugins: extras_suggestions, langpacks, priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+=============================================================================================================
+ Package               Arch                 Version                           Repository                Size
+=============================================================================================================
+Installing:
+ mariadb               x86_64               1:5.5.68-1.amzn2                  amzn2-core               8.8 M
+
+Transaction Summary
+=============================================================================================================
+Install  1 Package
+
+Total download size: 8.8 M
+Installed size: 49 M
+Is this ok [y/d/N]: y
+Downloading packages:
+mariadb-5.5.68-1.amzn2.x86_64.rpm                                                     | 8.8 MB  00:00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : 1:mariadb-5.5.68-1.amzn2.x86_64                                                           1/1 
+  Verifying  : 1:mariadb-5.5.68-1.amzn2.x86_64                                                           1/1 
+
+Installed:
+  mariadb.x86_64 1:5.5.68-1.amzn2                                                                            
+
+Complete!
+[ec2-user@ip-10-1-10-234 ~]$ mysql -h udacity.ce1uaivafuqf.us-east-1.rds.amazonaws.com -u admin -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 56
+Server version: 8.0.28 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.00 sec)
+MySQL [(none)]> CREATE DATABASE IF NOT EXISTs udacity;
+Query OK, 1 row affected (0.02 sec)
+
+MySQL [(none)]> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| udacity            |
++--------------------+
+5 rows in set (0.00 sec)
+
+MySQL [(none)]> USE udacity;
+Database changed
+MySQL [udacity]> CREATE TABLE adam_sandler_movies (id INTEGER PRIMARY KEY,title TEXT,director TEXT,release_date INTEGER);
+Query OK, 0 rows affected (0.05 sec)
+
+MySQL [udacity]> INSERT INTO adam_sandler_movies (title, director, release_date) VALUES ("Happy Gilmore", "Dennis Dugan", 1996);
+Query OK, 1 row affected, 1 warning (0.01 sec)
+
+MySQL [udacity]> SELECT * FROM adam_sandler_movies;
++----+---------------+--------------+--------------+
+| id | title         | director     | release_date |
++----+---------------+--------------+--------------+
+|  0 | Happy Gilmore | Dennis Dugan |         1996 |
++----+---------------+--------------+--------------+
+1 row in set (0.01 sec)
+
+MySQL [udacity]> 

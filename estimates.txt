@@ -1,0 +1,17 @@
+1. Minimum RTO for a single AZ outage
+60 seconds. Amazon RDS Multi-AZ with one standby performs automatic database failover that completes as quickly as 60 seconds with zero data loss and no manual intervention.
+
+2. Minimum RTO for a single region outage
+- 00:00 - Problem happens (0 minutes)
+- 00:05 - An amount of time passes before an alert triggers (5 minutes)
+- 00:06 - Alert triggers on-all staff (1 minute)
+- 00:16 - On-call staff may need to get out of bed, get to computer, log in, log onto VPN (10 minutes)
+- 00:26 - On-call staff promotes a read replica to a standalone DB instance (15 minutes)
+- 00:41 - On-call staff points the application to the newly-promoted DB instance (10 minutes)
+Total time: 51 minutes
+
+3. Minimum RPO for a single AZ outage
+0 seconds. 
+
+4. Minimum RPO for a single region outage
+5 minutes as an estimate of replicating the data across regions. 

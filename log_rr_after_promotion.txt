@@ -1,0 +1,13 @@
+MySQL [udacity]> INSERT INTO adam_sandler_movies (id, title, director, release_date) VALUES (1, "Grown Ups", "Dennis Dugan", 2010);
+Query OK, 1 row affected (0.02 sec)
+
+MySQL [udacity]> SELECT * FROM adam_sandler_movies;
++----+---------------+--------------+--------------+
+| id | title         | director     | release_date |
++----+---------------+--------------+--------------+
+|  0 | Happy Gilmore | Dennis Dugan |         1996 |
+|  1 | Grown Ups     | Dennis Dugan |         2010 |
++----+---------------+--------------+--------------+
+2 rows in set (0.00 sec)
+
+MySQL [udacity]> 
